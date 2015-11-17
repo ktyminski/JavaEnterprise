@@ -1,7 +1,7 @@
 <%-- 
     Document   : AllPost
     Created on : 2015-11-16, 04:14:40
-    Author     : cendr
+    Author     : ktyminski
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
