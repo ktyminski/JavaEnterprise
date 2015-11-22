@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Wlasciciele mieszkan</title>
     </head>
-    <body>
+    <body background="obrazek.jpg">
     <center>
         <h1>Wlasciciele mieszkan</h1>
         <div style="width: 1200px; margin-left: auto; margin-right: auto;">
@@ -22,6 +22,11 @@
                     <th>Imie</th>
                     <th>Nazwisko</th>
                     <th>Pesel</th>
+                    <th>
+                        <a href="AddNew.html">DODAJ</a>
+                        
+                    </th>
+                    
                 </tr>
                 <c:forEach items="${AllPost}" var="p">
                     <tr>

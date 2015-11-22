@@ -49,4 +49,61 @@ public class DataAccess {
         return ls;
     }
     
+    public static List<Wlasciciel> getNewById(int idWlasciciel){
+        List<Wlasciciel> ls = new LinkedList<>();
+        String sql = "select * from Wlasciciel where idWlasciciel = " +idWlasciciel;
+        try {
+            ResultSet rs = Connector.getPreparedStatement(sql).executeQuery();
+            while(rs.next()){
+                Wlasciciel w = new Wlasciciel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                ls.add(w);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return ls;
+    }
+    
+    public void edit(String idWlasciciel, String imie, String nazwisko, String pesel){
+        try {
+            String sql = "update Wlasciciel SET imie = ?, nazwisko = ?, pesel = ?" + " where idWlasciciel = ?";
+            PreparedStatement ps= Connector.getPreparedStatement(sql);
+            ps.setString(1, imie);
+            ps.setString(2, nazwisko);
+            ps.setString(3, pesel);
+            ps.setString(4, idWlasciciel);
+            
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void delete(int idWlasciciel){
+        try {
+            String sql = "delete from Wlasciciel where idWlasciciel=?";
+            PreparedStatement ps = Connector.getPreparedStatement(sql);
+            ps.setInt(1, idWlasciciel);
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+        public void search(int idWlasciciel){
+        try {
+            String sql = "select * from Wlasciciel where idWlasciciel=?";
+            PreparedStatement ps = Connector.getPreparedStatement(sql);
+            ps.setInt(1, idWlasciciel);
+            ps.executeUpdate();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
 }

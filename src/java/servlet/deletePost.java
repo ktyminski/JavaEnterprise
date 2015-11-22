@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlet;
 
 import dao.DataAccess;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet(name = "AllPost", urlPatterns = {"/AllPost"})
-public class AllPost extends HttpServlet {
+/**
+ *
+ * @author karoltyminski
+ */
+@WebServlet(name = "deletePost", urlPatterns = {"/delete"})
+public class deletePost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,10 +32,13 @@ public class AllPost extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("AllPost", DataAccess.getAll());
-        RequestDispatcher rd = request.getRequestDispatcher("AllPost.jsp");
-        rd.forward(request, response);
-    }
+        String idWlascicieltemp = request.getParameter("idWlasciciel");
+        int idWlasciciel=Integer.parseInt(idWlascicieltemp);
+        DataAccess da = new DataAccess();
+        da.delete(idWlasciciel);
+        response.sendRedirect("/BazaMieszkan/AllPost");
+        }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
